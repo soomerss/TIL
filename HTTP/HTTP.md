@@ -31,3 +31,9 @@ print(res.text)
 
 ## 참고 사이트 
 https://webhook.site
+
+## parameter와 queryString 등
+- payload란 전달되는 데이터 그 자체를 말한다.
+- querySTring이란 url뒤에 ?로 시작하는 부분을 말한다.
+- parameter는 queryString안에서 모여있는 키와 값의 쌍이며, &기호로 구분한다.
+- ex)www.naver.com?id=naver&pw=1234

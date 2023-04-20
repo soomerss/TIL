@@ -26,3 +26,6 @@ return render_template('*.html')로 표현할 수 있다. 그런데 이때 이 h
 
 * 주석
 * {# 내용 #}
+
+* 데코레이터  
+app.route()

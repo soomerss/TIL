@@ -74,3 +74,15 @@
 git repo
 setting Collaborat\or
 다른 사람의 리뷰를 받아봤다.
+
+## 기능
+
+* clone, init, add, commit, push, pull, merge, branch
+
+## 용어
+* REpo Repository로 관리된다
+* Master : 한 Repo에서 기본이 되는 메인 코드를 지칭
+* Branch : 원본 브랜치와 병합하려는 목적
+* clone : 다른 계정에 존재하는 Repo로부터 새로운 Local reposit  roy를 만드는 것
+* Commit(Check-in):
+  * - 내가 만든 코드 변경을 Branch의 Local Repository에 반영 

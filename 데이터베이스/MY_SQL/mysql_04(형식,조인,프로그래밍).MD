@@ -33,6 +33,7 @@ DELIMITER ; -- DELIMITER 다음 ;를 꼭 띄워주자!!!!!
 
 - DELIMITER는 구획의 시작과 끝이라는 뜻이다.
 ## 프로그래밍 제 방법
+
 ```
 IF 조건 THEN
 구문

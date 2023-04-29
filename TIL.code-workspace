@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../무제 폴더 2"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "무제 폴더 2"
+	}
+}

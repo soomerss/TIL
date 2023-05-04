@@ -6,9 +6,20 @@
 * 주석 <!--   내용    -->
 * html 속성에는 lang으로 언어 설정
 
+## html과 lang
+* <html lang="ko">
+* 웹 문서의 시작을 알리는 html 태그에서 lang은 어떤 역할을 할까?
+* 검색사이트에서 특정 언어별로 검색 시 ko를 우선 검색하는 효과가 있다.
+* 또한 화면낭독기에서 언어에 따라 다르게 낭독하거나 하는 기능이 있다.
 
 ## HEAD
 ### head 태그
+* 대표 : title, meta
+* <title>안녕</title> -> 브라우저의 제목표시줄이야
+* <meta charset="UTF-8">
+* <meta name="keywords" content="html의 구조"> -> 웹 문서의 키워드
+* <meta name="description" content="html의 구조를 알아봅시다."> -> 웹 문서의 설명
+* <meta name="author" content="co"> -> 웹 문서의 소유자나 제작자
 * 사람의 눈에는 보이지 않지만 문서의 환경설정등의 역할을 하는 것
 * 메타데이터 - 인코딩
 * 타이틀, 메타데이터, 링크, 스타일(CSS), 스크립트(자바스크립트)
@@ -29,14 +40,14 @@
 - 글자처럼 취급되나 block 태그의 성질을 가지는 요소
 
 ---
-### 레이아웃 태그
+### 레이아웃 태그 - 시맨틱 의미론적인
 1. 컨텐츠 분할 요소(div)
 2. 레이아웃태그(header,footer,main)
 * header - 블로그 글 제목, 작성일 등의 주요 정보를 담는 태그
 * footer - 저작권 정보, 연락처 등의 부차적인 정보
 * main - 주요 컨텐츠를 담는 태그, 무조건 한번만!
 3. 레이아웃태그(section,article,aside)
-   * section - 컨텐츠의 구역을 나누는 태그
+   * section - 컨텐츠의 구역을 나누는 태그이며 article이 독립된 영역을 뜻한다면 section은 몇개의 컨텐츠를 조합한다.
    * article - 블로그 포스트, 뉴스 기사와 같은 독립적인 전달을 하는 태그
    * aside - 간접적인 정보를 전달하는 태그
 4. why 레이아웃태그

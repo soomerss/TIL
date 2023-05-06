@@ -1,0 +1,37 @@
+<ul>
+    <li><label><input type="checkbox" value="g_3">선물용 3kg <input type="range" max="5" min="0" value="1">개 (최대
+            5개)</label></li>
+    <li><label><input type="checkbox" value="g_5">선물용 5kg <input type="range" max="3" min="0" value="1">개 (최대
+            3개)</label></li>
+</ul>
+
+<h1>날짜 지정하기</h1>
+<input type="date"> <!-- yyyy-mm-dd -->
+<input type="month"> <!-- yyyy-mm -->
+<input type="date"> <!-- 몇째주인지 표시-->
+
+<h1>시간 지정하기</h1>
+<input type="time">
+<input type="datetime"> <!-- 왜 작동을 안하지? 브라우저마다 다르다고 하는데, 지양해야 겠군-->
+<input type="datetime-local">
+
+
+<input type="button" value="공지사항" onclick="window.open('notice.html')">
+
+<form action="">
+    <fieldset>
+        <legend><b>반품 정보</b></legend>
+        <p>만일 수령한 상품에 문제가 있다면 즉시 <b>반품 신청</b>해 주세요.</p>
+        <p>반품 신청시 상품의 상태를 사진으로 첨부해주세요.</p>
+        <hr>
+        <input type="file" value="사진 첨부">
+    </fieldset>
+</form>
+
+<form action="">
+    <input type="hidden" name="login_root" value="direct">
+    <label>아이디 <input type="text"></label>
+    <label>패스워드 <input type="password"></label>
+    <label>이메일 <input type="email"></label>
+    <input type="submit" value="로그인">
+</form>

@@ -1,0 +1,70 @@
+<form action="">
+    <fieldset>
+        <label for="user_id">id : </label>
+        <input id="user_id" type="text" size="20" maxlength="20" value="아이디를 입력해주세요.">
+        <label for="user_pw">password : </label>
+        <input id="user_pw" type="password" size="15" maxlength="20">
+        <input type="submit" value="Login">
+    </fieldset>
+</form>
+
+
+<form action="{ static url ~~}" method="post">
+    <fieldset>
+        <legend>
+            배송 정보
+        </legend>
+        <ul>
+            <li><label>이름 <input type="text"></label></li>
+            <li><label>배송 주소 <input type="text"></label></li>
+            <li><label>이메일<input type="email" value="한메일은 안받음"></label></li>
+            <li><label>연락처 <input type="tel" value="070 금지" maxlength="20"></label></li>
+        </ul>
+
+    </fieldset>
+
+</form>
+
+<form action="">
+    <fieldset>
+        <legend>
+            <b>상품 선택</b>
+        </legend>
+        <p><b>주문할 상품을 선택해 주세요</b></p>
+        <label><input type="checkbox" value="g_3">선물용 3kg</label>
+        <label><input type="checkbox" value="g_5">선물용 5kg</label>
+        <label><input type="checkbox" value="h_3">가정용 3kg</label>
+        <label><input type="checkbox" value="h_5">가정용 5kg</label>
+        <p><b>포장 선택</b></p>
+        <label><input type="radio" name="gift_boxing" value="yes">선물 포장</label>
+        <label><input type="radio" name="gift_boxing" value="no">선물 포장 안함</label>
+    </fieldset>
+</form>
+
+<h1>회원 가입을 환영합니다.</h1>
+<form action="">
+    <fieldset>
+        <legend><b>사용자 정보</b></legend>
+        <ul>
+            <li><label>아이디 <input type="text"></label></li>
+            <li><label>비밀번호 <input type="password"></label></li>
+            <li><label>비밀번호 확인 <input type="password"></label></li>
+            <li><label>이메일 <input type="email"></label></li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend>
+            <b>이벤트와 새로운 소식</b>
+        </legend>
+        <label><input type="checkbox" name="email_receipt" value="yes">메일 수신</label>
+        <label><input type="checkbox" name="email_receipt" value="no">메일 수신 안함</label>
+    </fieldset>
+    <input type="submit" value="가입하기">
+    <input type="reset" value="취소">
+</form>
+
+<form action="">
+    <label for="user_id">아이디 : <input type="text" id="user_id" maxlength="20"></label>
+    <label for="user_pw">비밀번호 : <input type="password" id="user_pw" maxlength="20"></label>
+    <input type="image" src="images/right-to-bracket-solid.svg" height="20" width="20" alt="Login">
+</form>

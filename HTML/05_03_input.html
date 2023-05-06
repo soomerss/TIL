@@ -1,0 +1,54 @@
+<form action="">
+    <label><input type="text" placeholder="아이디를 입력해주세요." autofocus required></label>
+    <label>비밀번호 : <input type="password" placeholder="비밀번호를 입력해주세요" required></label>
+    <input type="submit" value="Login">
+</form>
+
+<form action="">
+    <fieldset>
+        <legend><b>배송 정보</b></legend>
+        <ul>
+            <li>
+                <label for="prod">주문 상품</label>
+                <input type="text" id="prod" value="상품용 3kg" readonly>
+            </li>
+            <li>
+                <label for="user_name">이름</label>
+                <input type="text" id="user_name" autofocus>
+            </li>
+            <li>
+                <label for="addr">배송 주소</label>
+                <input type="text" id="addr" required>
+            </li>
+            <li>
+                <label for="email_addr">이메일</label>
+                <input type="email" id="email_addr">
+            </li>
+            <li>
+                <label for="phone">연락처</label>
+                <input type="tel" id="phone" placeholder="하이픈 빼고 입력해주세요.ex : (01012345678)">
+            </li>
+            <li>
+                <label for="deliver_date">배송희망일자</label>
+                <input type="date" id="deliver_date" required>
+            </li>
+            <li>
+                <label for="memo">MEMO</label>
+                <textarea name="what" id="memo" cols="30" rows="10"></textarea>
+            </li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend><b>이벤트와 새로운 소식</b></legend>
+        <label for="mailing">이메일 수신</label>
+        <input type="radio" id="mailing" name="mail" value="yes">
+        <label for="mailing">이메일 수신 안함</label>
+        <input type="radio" id="mailing" name="mail" value="no" checked>
+    </fieldset>
+    </ul>
+
+    <div>
+        <input type="submit" value="주문하기">
+        <input type="reset" value="취소하기">
+    </div>
+</form>

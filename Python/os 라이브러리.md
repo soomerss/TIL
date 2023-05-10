@@ -80,3 +80,4 @@ os.path.exist(파일 및 폴더명)
 os.path.isdir(파일 및 폴더명)
 os.path.isfile(파일 및 폴더명)
 ```
+

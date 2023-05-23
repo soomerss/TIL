@@ -1,7 +1,4 @@
-def numbers(*args):
-    print(args)
-    for arg in args:
-        print(arg)
+a = 0.01 * (10**50) + 1.0e2
+a = a - 0.01 * (10**50)
 
-
-numbers([])
+print(a)

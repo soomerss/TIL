@@ -78,3 +78,81 @@ delimiter ',' dateformat 'auto' timeformat 'auto' IGNOREHEADER 1 removequotes;
 -- removequotes 옵션은 데이터에 ""가 있으면 삭제하겠다는 것이다.
 이렇게 하면 S3에서 redshift로 벌크 업데이트를 수행할 수 있다.
 
+##
+AWS RedShift 사용자 관리
+```SQL
+# 유저생성
+CREATE USER soomers PASSWORD 'Ssoomer1423';
+
+# 유저 비밀번호 변경(password에 대문자와 소문자가 섞여있어야함)
+ALTER USER soomers PASSWORD 'sSoomer1423';
+
+# 유저 조회
+SELECT * from pg_user;
+
+# 그룹 생성(여러 사용자를 그룹으로 관리하고 이 그룹에 권한을 부여하기 위함이다.)
+CREATE GROUP analytics_users;
+ALTER GROUP analytics_users ADD USER soomers;
+
+# 그룹 조회
+SELECT * FROM pg_group;
+
+# 그룹에 스키마와 테이블에 대한 권한부여(스키마 권한을 주고, 그 후에 테이블 권한을 주어야한다.)
+GRANT ALL ON SCHEMA analytics ADD TO GROUP analytics_users; -- 스키마
+GRANT ALL ON ALL TABLES IN SCHEMA analytics ADD TO GROUP analytics_users; -- 테이블
+
+GRANT USAGE ON SCHEMA raw_data TO GROUP analytics_users; -- 읽기
+GRANT SELECT ON ALL TABLES IN SCHEMA raw_data TO GROUP analytics_users; -- 읽기
+```
+그룹으로 사용자를 관리하는 방법을 배웠는데, 누가 어떤 그룹에 들어가고, 그 그룹에는 어떤 권한을 주어야 하는지 미리 표 등을 통해 정해야 관리가 수월하다.
+
+ 
+## AWS RedShift 백업
+백업방식은 마지막 백업으로부터 바뀐 것들만 저장하는 방식으로 운용하는데, 이를 Snapshot 이라고 한다. 백업을 통해 특정 과거로 돌아가 그 시점의 내용으로 특정 테이블을 복구하는 것이 가능하다. 또는 과거의 특정 시점의 클러스터를 구성하는 것이 가능하다. 자동으로 백업이 이루어지며 최대35일간의 자료를 보관할 수 있다. 매뉴얼 백업은 따로 기간을 명시한 날까지 snapshot 데이터를 보관한다.
+
+ AWS serverless의 경우 사용자 만을 위한 자원을 배정받은 것이 아니기 때문에 snapshot을 보관하고 있지는 않고, Recovery Points를 24시간 내에서 보관한다. 이 Recovery Points에서 snapshot을 하게 되면 위 백업 방식처럼 운용이 가능하다. \
+
+## AWS RedShift Spectrum
+S3에 팩트 테이블을 두고 redshift에 디멘전 테이블을 보관하여 S3를 외부테이블로 조인하는 것을 지원하는 서비스이다. Redshift는 비싸기 때문에 모든 데이터를 내부 테이블에 저장하지 않고, 상대적으로 가격이 저렴한 서비스인 S3에 용량이 많은 테이블을 보관하려는 목적 이 있다. 
+
+실습의 순서는 다음과같다. IAM에서 AWSGlueConsolFullAccess 권한을 부여한다. 외부 테이블용 스키마를 생성한다. S3에서  사용하려는 버킷에서 폴더를 생성한다. CSV포맷의 파일을 복사한다. 실습파일을 외부 Fact 테이블로 저장한다. 내부에 있는 디멘젼 테이블과 외부에 있는 팩트 테이블을 조인한다.
+
+# 외부 스키마 생성
+
+```SQL
+CREATE EXTERNAL SCHEMA external_schema
+from data catalog 
+database 'myspectrum_db' 
+iam_role 'arn:aws:iam::~~~~~~:role/redshift.fullacess.s3'
+create external database if not exists;
+
+# 조인할 내부 테이블 생성
+
+CREATE TABLE raw_data.user_property AS
+SELECT
+  userid, 
+  CASE WHEN cast (random() * 2 as int) = 0 THEN 'male' ELSE 'female' END gender,
+  (CAST(random() * 50 as int)+18) age
+FROM (
+  SELECT DISTINCT userid
+  FROM raw_data.user_session_channel
+);
+
+# 외부 테이블 생성
+
+CREATE EXTERNAL TABLE external_schema.user_session_channel(
+   userid integer ,
+   sessionid varchar(32),
+   channel varchar(32)
+)
+row format delimited
+fields terminated by ','
+stored as textfile
+location 's3://버킷/폴더/';
+
+# 조인
+SELECT gender, COUNT(1)
+FROM external_schema.user_session_channel usc
+JOIN raw_data.user_property up ON usc.userid = up.userid
+GROUP BY 1;
+```

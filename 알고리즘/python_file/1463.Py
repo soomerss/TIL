@@ -1,10 +1,10 @@
 import sys
 
-storage = {}
+cache = {}
 for num in range(1, 10**6 + 1):
-    storage[num] = 10000000
+    cache[num] = 10000000
 
-storage[1] = 0
+cache[1] = 0
 for num in range(1, 10**6 + 1):
     if num + 1 <= 10**6:
         cache[num + 1] = min(cache[num + 1], cache[num] + 1)

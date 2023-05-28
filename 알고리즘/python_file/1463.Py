@@ -1,26 +1,17 @@
 import sys
 
-sys.setrecursionlimit(10**6)
+storage = {}
+for num in range(1, 10**6 + 1):
+    storage[num] = 10000000
 
-number = int(sys.stdin.readline().rstrip())
-
-minimum = 999999
-
-
-def dfs(n, goal, depth):
-    global minimum
-    if depth > minimum:
-        return
-    if n > goal:
-        return
-    if n == goal:
-        minimum = min(minimum, depth)
-
-    dfs(n * 3, goal, depth + 1)
-    dfs(n * 2, goal, depth + 1)
-    dfs(n + 1, goal, depth + 1)
-    return
+storage[1] = 0
+for num in range(1, 10**6 + 1):
+    if num + 1 <= 10**6:
+        cache[num + 1] = min(cache[num + 1], cache[num] + 1)
+    if num * 2 <= 10**6:
+        cache[num * 2] = min(cache[num * 2], cache[num] + 1)
+    if num * 3 <= 10**6:
+        cache[num * 3] = min(cache[num * 3], cache[num] + 1)
 
 
-dfs(1, number, 0)
-print(minimum)
+sys.stdout.write(str(cache[int(input())]))

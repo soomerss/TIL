@@ -4,7 +4,9 @@ import json
 from datetime import date, timedelta
 
 def get_df(date):
-    key = key
+    with open('key.json','r') as file:
+        json_data = json.load(file)
+        key = json_data['key']
     url = f"https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey={key}&basDt={date}&resultType=json&numOfRows=10000&pageNo=1"
     req = requests.get(url)
     json_file = json.loads(req.text)
@@ -24,9 +26,11 @@ while start_day <= date.today():
 
 
 def make_large_date(total_days):
-    for i in total_days:
-        if i == '20230601':
-            df = get_df(i)
-        else :
-            df = pd.concat([df,get_df(i)],ignore_index=True)
+    df = get_df(total_days[0])
+    for i in len(range(total_days)):
+        if i == 0:
+            df = df
+        else:
+            df = pd.concat([df,get_df(total_days[i])],ignore_index=True)
     return df
+
